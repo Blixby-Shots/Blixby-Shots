@@ -658,7 +658,13 @@
       section { padding: 4rem 1.5rem; }
       .about-content { grid-template-columns: 1fr; gap: 2rem; }
       .portfolio-grid { grid-template-columns: 1fr; }
-      .stats { gap: 1rem; }
+            .stats { gap: 1rem; }
+
+      .portfolio-overlay {
+        transform: translateY(0);
+        opacity: 1;
+        padding: 1.5rem 1rem 1rem;
+      }
       .gallery-item:nth-child(even),
       .gallery-item:nth-child(odd),
       .gallery-item:nth-child(3n) {
@@ -1083,10 +1089,33 @@
       container.innerHTML = '';
     }
 
-    function toggleMute(btn) {
+         function toggleMute(btn) {
       const video = btn.closest('.video-wrap').querySelector('video');
-      video.muted = !video.muted;
-      btn.textContent = video.muted ? '🔇' : '🔊';
+      
+      if (video.muted) {
+        // Unmuting this one — pause and mute all other videos
+        document.querySelectorAll('#lb-gallery video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            v.muted = true;
+            const wrap = v.closest('.video-wrap');
+            const muteBtn = wrap?.querySelector('.video-mute');
+            const playBtn = wrap?.querySelector('.video-play');
+            if (muteBtn) muteBtn.textContent = '🔇';
+            if (playBtn) playBtn.textContent = '▶';
+          }
+        });
+        video.muted = false;
+        btn.textContent = '🔊';
+        video.play().catch(() => {});
+        
+        // Update this video's play button to show pause icon
+        const playBtn = btn.closest('.video-wrap')?.querySelector('.video-play');
+        if (playBtn) playBtn.textContent = '⏸';
+      } else {
+        video.muted = true;
+        btn.textContent = '🔇';
+      }
     }
 
     function togglePlay(btn) {
