@@ -1,0 +1,1199 @@
+X<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blixby.shots — Photography Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #f5f5f5;
+      --muted: #888;
+      --accent: #e8c547;
+      --border: #222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+     .hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  background-image: url('images/_DSC5612 copy.jpg');
+  background-size: cover;
+  background-position: center;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+   .hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.4));
+  z-index: 0;
+}
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+        .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+    }
+    .hero h1 span { color: var(--accent); display: block; }
+
+          .hero p {
+      font-size: 1.1rem;
+      color: var(--text);
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+      font-weight: 400;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border: 1px solid var(--text);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--text); color: var(--bg); }
+
+    .btn-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .btn-accent:hover { background: transparent; color: var(--accent); }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header { margin-bottom: 4rem; }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    .section-header p { color: var(--muted); font-size: 1rem; }
+    .divider {
+      width: 60px; height: 2px;
+      background: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .portfolio-item {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--surface);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+    .portfolio-item:hover { transform: translateY(-5px); }
+
+    .portfolio-item img, .portfolio-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-item:hover img, .portfolio-item:hover video { transform: scale(1.05); }
+
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s;
+    }
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .portfolio-overlay h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .portfolio-overlay p { font-size: 0.85rem; color: var(--muted); }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .client-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .client-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .client-card .client-logo {
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, var(--accent), #d4a017);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--bg);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .client-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .client-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+    .client-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(232,197,71,0.1);
+      color: var(--accent);
+      font-size: 0.75rem;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-img {
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
+    .stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat h4 { font-size: 2rem; color: var(--accent); font-weight: 700; }
+    .stat p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+        .contact-section {
+      text-align: center;
+      background: rgba(20,20,20,0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 4rem 2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-section p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .social-links a {
+      width: 50px; height: 50px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(5,5,5,0.98);
+      z-index: 1000;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .lightbox.active { display: block; }
+
+    .lightbox-close {
+      position: fixed;
+      top: 2rem; right: 2rem;
+      width: 50px; height: 50px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .lightbox-close:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .lightbox-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .lightbox-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .lightbox-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: -1.5px;
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+    .lightbox-header p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+               /* GALLERY ITEMS */
+       .gallery-item {
+      margin-bottom: 5rem;
+      position: relative;
+      border-radius: 8px;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+      text-align: center;
+    }
+
+    .gallery-item img, .gallery-item video {
+      display: block;
+      border-radius: 8px;
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+             /* Large desktop: Photos 3-column, Videos 2-column */
+    @media (min-width: 1400px) {
+      .lightbox-content {
+        max-width: 100%;
+        padding: 6rem 3vw 4rem;
+      }
+      #lb-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1800px;
+        margin: 0 auto;
+      }
+      
+      /* Photos: 3-column staggered */
+      .gallery-item.photo-item {
+        width: calc(33.333% - 1.5rem);
+        margin-bottom: 3rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: translateX(-120px) rotate(-5deg);
+        transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gallery-item.photo-item:nth-child(3n+1) {
+        margin-top: 0;
+        transform: translateX(-120px) rotate(-5deg);
+      }
+      .gallery-item.photo-item:nth-child(3n+2) {
+        margin-top: 10rem;
+        transform: translateX(120px) rotate(5deg);
+      }
+      .gallery-item.photo-item:nth-child(3n+3) {
+        margin-top: 20rem;
+        transform: translateY(100px) scale(0.88) rotate(3deg);
+      }
+      .gallery-item.photo-item:nth-child(3n+4) { margin-top: 5rem; }
+      .gallery-item.photo-item:nth-child(3n+5) { margin-top: 15rem; }
+      .gallery-item.photo-item:nth-child(3n+6) { margin-top: 25rem; }
+      .gallery-item.photo-item.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+      }
+      .gallery-item.photo-item img {
+        max-height: 55vh;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+      }
+      
+      /* Videos: 2-column, heavily staggered, natural aspect ratio */
+      .gallery-item.video-item {
+        width: calc(50% - 1.5rem);
+        margin-bottom: 4rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: translateX(-100px) rotate(-4deg);
+        transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gallery-item.video-item:nth-child(odd) {
+        margin-top: 0;
+        transform: translateX(-100px) rotate(-4deg);
+      }
+      .gallery-item.video-item:nth-child(even) {
+        margin-top: 14rem;
+        transform: translateX(100px) rotate(4deg);
+      }
+      .gallery-item.video-item:nth-child(3n) {
+        transform: translateY(80px) scale(0.92) rotate(-2deg);
+      }
+      .gallery-item.video-item.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+      }
+            .gallery-item.video-item video {
+        max-height: 75vh;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 8px;
+      }
+    }
+
+    /* Medium desktop: everything 2-column */
+    @media (min-width: 769px) and (max-width: 1399px) {
+      .lightbox-content {
+        max-width: 100%;
+        padding: 6rem 4vw 4rem;
+      }
+      #lb-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        width: calc(50% - 1.5rem);
+        margin-bottom: 4rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: translateX(-100px) rotate(-4deg);
+        transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gallery-item:nth-child(even) {
+        margin-top: 12rem;
+        transform: translateX(100px) rotate(4deg);
+      }
+      .gallery-item:nth-child(3n) {
+        transform: translateY(80px) scale(0.92) rotate(-2deg);
+      }
+      .gallery-item.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+      }
+      .gallery-item img {
+        max-height: 58vh;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+      }
+                    .gallery-item video {
+        max-height: 75vh;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 8px;
+      }
+    }
+    /* Mobile: single column, full image visible */
+    @media (max-width: 768px) {
+      .gallery-item {
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .gallery-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .gallery-item img {
+        max-height: 85vh;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+            .gallery-item video {
+        max-height: 85vh;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 8px;
+      }
+      .gallery-item:nth-child(even) {
+        margin-left: 8%;
+        margin-right: -4%;
+      }
+      .gallery-item:nth-child(odd) {
+        margin-left: -4%;
+        margin-right: 8%;
+      }
+      .gallery-item:nth-child(3n) {
+        margin-left: 2%;
+        margin-right: 2%;
+      }
+    }
+
+    .gallery-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-top: 1.5rem;
+      text-align: center;
+      letter-spacing: 0.5px;
+      opacity: 0.85;
+    }
+
+    /* ===== PER-VIDEO MUTE BUTTON ===== */
+       .video-wrap {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-mute {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      opacity: 0;
+    }
+
+    .gallery-item:hover .video-mute,
+    .video-mute:focus {
+      opacity: 1;
+    }
+
+        .video-mute:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      transform: scale(1.1);
+    }
+
+    .video-play {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      opacity: 0;
+    }
+    .gallery-item:hover .video-play,
+    .video-play:focus {
+      opacity: 1;
+    }
+    .video-play:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      transform: scale(1.1);
+    }
+
+    /* Always show buttons on touch devices */
+    @media (hover: none) {
+      .video-mute { opacity: 1; }
+      .video-play { opacity: 1; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .about-content { grid-template-columns: 1fr; gap: 2rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .stats { gap: 1rem; }
+      .gallery-item:nth-child(even),
+      .gallery-item:nth-child(odd),
+      .gallery-item:nth-child(3n) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .lightbox-header h2 { font-size: 2.2rem; }
+      .video-mute { opacity: 1; width: 44px; height: 44px; font-size: 1rem; }
+    }
+
+
+
+/* ===== CLIENTS BACKGROUND ===== */
+#clients {
+  position: relative;
+  background-image: url('images/DSC01473-Enhanced-NR copy.jpg');
+  background-size: cover;
+  background-position: center;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+#clients::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10,10,10,0.55);
+  z-index: 0;
+}
+#clients .section-header,
+#clients .clients-grid {
+  position: relative;
+  z-index: 1;
+}
+#clients .client-card {
+  background: rgba(20,20,20,0.7);
+  backdrop-filter: blur(10px);
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* ===== ABOUT BACKGROUND ===== */
+#about {
+  position: relative;
+  background-image: url('images/DSC02456-Enhanced-NR copy.jpg');
+  background-size: cover;
+  background-position: center;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+#about::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10,10,10,0.55);
+  z-index: 0;
+}
+#about .about-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== CONTACT BACKGROUND ===== */
+#contact {
+  position: relative;
+  background-image: url('images/_DSC3921-2 copy.jpg');
+  background-size: cover;
+  background-position: center;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10,10,10,0.55);
+  z-index: 0;
+}
+#contact .contact-section {
+  position: relative;
+  z-index: 1;
+  background: rgba(20,20,20,0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">blixby<span>.</span>shots</div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Capturing Motion <span>Defining Automotive Art</span></h1>
+      <p>Motion, light, and detail — captured for the automotive world. Based in Los Gatos, serving the Bay Area.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-accent">View Portfolio</a>
+        <a href="#contact" class="btn">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-header">
+      <h2>Past Work</h2>
+      <div class="divider"></div>
+      <p>Click any project to open the gallery.</p>
+    </div>
+    <div class="portfolio-grid">
+      
+      <div class="portfolio-item" onclick="openGallery(0)">
+        <img src="images/_DSC6997 copy.jpg" alt="Videography">
+        <div class="portfolio-overlay">
+          <h3>Videography</h3>
+          <p>Personal Projects - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(1)">
+        <img src="images/_DSC7287 copy.jpg" alt="Urban Street Series">
+        <div class="portfolio-overlay">
+          <h3>McLaren Artura Spider</h3>
+          <p>Client Shoot - 2026</p>
+        </div>
+      </div>
+ <div class="portfolio-item" onclick="openGallery(2)">
+        <img src="images/Screenshot 2026-08-20 at 1.00.46 AM.png" alt="Forged">
+        <div class="portfolio-overlay">
+          <h3>Forged</h3>
+          <p>Brand Shoot - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(3)">
+        <img src="images/_DSC4649 copy.jpg" alt="Subaru WRX">
+        <div class="portfolio-overlay">
+          <h3>Subaru WRX</h3>
+          <p>Client Shoot - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(4)">
+        <img src="images/_DSC3929 copy.jpg" alt="Battle Aero Kit Mk5 Supra">
+        <div class="portfolio-overlay">
+          <h3>Battle Aero Kit Mk5 Supra</h3>
+          <p>Client Shoot - 2025</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(5)">
+        <img src="images/_DSC6281 copy.jpg" alt="IMSA - Laguna Seca">
+        <div class="portfolio-overlay">
+          <h3>IMSA - Laguna Seca</h3>
+          <p>Motorsports Media</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(6)">
+        <img src="images/DSC01460-Enhanced-NR copy.jpg" alt="My Favorite Photos">
+        <div class="portfolio-overlay">
+          <h3>My Favorite Photos</h3>
+          <p>2025 - 2026</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="section-header">
+      <h2>Past Clients</h2>
+      <div class="divider"></div>
+      <p>Brands and creators I've had the pleasure of working with.</p>
+    </div>
+    <div class="clients-grid">
+
+      <div class="client-card">
+        <div class="client-logo">R</div>
+        <h3>Riley A</h3>
+        <p>Great photographer to work with, saw the vision, and executed. Delivered the results in a timely manner. Overall, amazing photos, and a great person to work with.</p>
+        <span class="client-tag">Subaru WRX</span>
+      </div>
+
+      <div class="client-card">
+        <div class="client-logo">S</div>
+        <h3>Sarah Jenkins</h3>
+        <p>Personal branding shoot for a lifestyle influencer and podcast host.</p>
+        <span class="client-tag">Portrait</span>
+      </div>
+
+      <div class="client-card">
+        <div class="client-logo">V</div>
+        <h3>Vogue Italia</h3>
+        <p>Editorial fashion shoot for their digital summer issue.</p>
+        <span class="client-tag">Editorial</span>
+      </div>
+
+      <div class="client-card">
+        <div class="client-logo">M</div>
+        <h3>Marcus Chen Music</h3>
+        <p>Album artwork and promotional content for an indie artist's debut release.</p>
+        <span class="client-tag">Music</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-content">
+            <div class="about-img">
+        <img src="images/your-photo.jpg" alt="About me">
+      </div>
+      <div class="about-text">
+        <h3>Behind the Lens</h3>
+        <p>I'm a photographer and visual storyteller with a passion for capturing authentic moments. My work sits at the intersection of professional, creative, and commercial photography.</p>
+        <p>With over 5 years of experience shooting brands, motorsport, and private shoots, I bring a cinematic eye and collaborative spirit to every project.</p>
+        <div class="stats">
+          <div class="stat">
+            <h4>50+</h4>
+            <p>Projects</p>
+          </div>
+          <div class="stat">
+            <h4>30+</h4>
+            <p>Clients</p>
+          </div>
+          <div class="stat">
+            <h4>5</h4>
+            <p>Years</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-section">
+      <h2>Let's Create Together</h2>
+      <p>Available for bookings, collaborations, and creative projects. Drop me a message and let's make something beautiful.</p>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=loic@kerebel.com" target="_blank" class="btn btn-accent">loic@kerebel.com</a>
+      <p style="margin-top: 1rem; color: #888;">📞 <a href="tel:+12247154330" style="color: #f5f5f5; text-decoration: none;">(224) 715-4330</a></p>
+      <div class="social-links">
+        <a href="https://instagram.com/blixby.shots" target="_blank" title="Instagram">📸</a>
+        <a href="https://tiktok.com/@blixby.cars" target="_blank" title="TikTok">🎵</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=loic@kerebel.com" target="_blank" title="Email">✉️</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 blixby.shots — All rights reserved. Designed with light and shadow.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeGallery()">✕</button>
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <h2 id="lb-title">Project Title</h2>
+        <p id="lb-subtitle">Category — Year</p>
+      </div>
+      <div id="lb-gallery"></div>
+    </div>
+  </div>
+
+  <script>
+    const galleries = [
+      {
+        title: "Videography",
+        subtitle: "Personal Projects - 2026",
+        items: [
+          { type: "video", src: "images/3rs copy.mp4", caption: "Porsche 992 GT3RS" },
+          { type: "video", src: "images/Veyron copy.mp4", caption: "Bugatti Veyron" },
+          { type: "video", src: "images/Cole 340.mp4", caption: "BMW M340i" },
+          { type: "video", src: "images/sf90.mp4", caption: "Ferrari SF90" },
+	 { type: "video", src: "images/Porsche 962 copy 1.mp4", caption: "Porsche 962C" },
+	 { type: "video", src: "images/917k copy 1.mp4", caption: "Porsche 917k" }
+        ]
+      },
+      {
+        title: "McLaren Artura Spider",
+        subtitle: "Client Shoot - 2026",
+               items: [
+	 { type: "video", src: "images/McLaren Artura Spider copy.mp4", caption: "Chasing horizons in the Artura" },
+    { type: "image", src: "images/_DSC7287 copy.jpg", caption: "Perfect color" },      
+ { type: "image", src: "images/_DSC7271 copy.jpg", caption: "Borderline Ocean" },
+          { type: "image", src: "images/_DSC7284 copy.jpg", caption: "Double Open" },
+          { type: "image", src: "images/_DSC7282 copy.jpg", caption: "The wheel that controls the beast" },
+          { type: "image", src: "images/_DSC7273 copy.jpg", caption: "McLaren dead straight" },
+	   { type: "image", src: "images/_DSC7281 copy.jpg", caption: "The lower the better" },
+	   { type: "image", src: "images/_DSC7286 copy.jpg", caption: "Part of the perfect view" },
+	  { type: "image", src: "images/_DSC7295 copy.jpg", caption: "The perfect silhouette" },
+        ]
+      },
+ {
+        title: "Forged",
+        subtitle: "Brand Shoot - 2026",
+        items: [
+          { type: "video", src: "images/Forged Shoot Project 2 copy.mp4", caption: "Forged Cars" },
+          { type: "video", src: "images/Forged copy.mp4", caption: "What is it?" },
+          
+        ]
+      },
+      {
+        title: "Subaru WRX",
+        subtitle: "Client Shoot - 2026",
+        items: [
+          { type: "image", src: "images/_DSC4649 copy.jpg", caption: "Top of the endless valley" },
+          { type: "image", src: "images/_DSC4677-2 copy.jpg", caption: "The perfect daily" },
+          { type: "image", src: "images/_DSC4700 copy.jpg", caption: "Warm lighting on a cool car" },
+          { type: "image", src: "images/_DSC4756 copy.jpg", caption: "Escaping the focus" },
+	  { type: "image", src: "images/_DSC4759 copy.jpg", caption: "WRX in its element" },
+	  { type: "image", src: "images/_DSC4701 copy.jpg", caption: "Looking past the valley" },
+        ]
+      },
+ 
+      {
+        title: "Battle Battle Aero Kit Mk5 Supra",
+        subtitle: "Client Shoot - 2025",
+        items: [
+          { type: "image", src: "images/_DSC3929 copy.jpg", caption: "Menacing from afar" },
+          { type: "image", src: "images/_DSC3970 copy.jpg", caption: "The perfect curves" },
+          { type: "image", src: "images/_DSC4093 copy.jpg", caption: "Long exposure" },
+	   { type: "image", src: "images/_DSC7001 copy.jpg", caption: "The perfect fitment" },
+	   { type: "image", src: "images/_DSC7000 copy.jpg", caption: "Below sea level" }
+        ]
+      },
+
+      {
+        title: "IMSA - Laguna Seca",
+        subtitle: "Portrait — 2023",
+        items: [
+          { type: "image", src: "images/_DSC5509 copy.jpg", caption: "Porsche 963 Apple Livery" },
+          { type: "image", src: "images/_DSC5605 copy.jpg", caption: "Porsche GT3R" },
+          { type: "image", src: "images/_DSC5612 copy.jpg", caption: "Aston Martin Valkyrie" },
+          { type: "image", src: "images/_DSC5787 copy.jpg", caption: "Aston at Corkscrew" },
+{ type: "image", src: "images/_DSC6242 copy.jpg", caption: "Pedal to the Floor" },
+{ type: "image", src: "images/_DSC6418 copy.jpg", caption: "Shooting Flames" },
+{ type: "image", src: "images/_DSC6344 copy.jpg", caption: "Looking down no the track" },
+{ type: "image", src: "images/_DSC6013 copy.jpg", caption: "Racing to the line" }
+        ]
+      },
+      {
+        title: "My Favorite Photos",
+        subtitle: "2025 - 2026",
+        items: [
+          { type: "image", src: "images/DSC01473-Enhanced-NR copy.jpg", caption: "Japanese Porsche Widebody" },
+          { type: "image", src: "images/DSC02334-Enhanced-NR copy.jpg", caption: "Definition of Motion" },
+          { type: "image", src: "images/_DSC7287 copy.jpg", caption: "The Oceanic Color" },
+{ type: "image", src: "images/_DSC6950 copy.jpg", caption: "Racing down 17 Mile" },
+{ type: "image", src: "images/_DSC6838 copy.jpg", caption: "Guided by the Palm Trees" },
+{ type: "image", src: "images/_DSC6624 copy.jpg", caption: "BMW in front of the Golden Gate" },
+{ type: "image", src: "images/_DSC3907 copy.jpg", caption: "Perfect Motion Blur" },
+{ type: "image", src: "images/_DSC3863.jpg", caption: "Seeing Double GTR" },
+{ type: "image", src: "images/_DSC3246-Enhanced-NR copy.jpg", caption: "Abandoned Looking GT4RS" }
+        ]
+      }
+    ];
+
+    let videoObserver;
+
+    function openGallery(index) {
+      const data = galleries[index];
+      document.getElementById('lb-title').textContent = data.title;
+      document.getElementById('lb-subtitle').textContent = data.subtitle;
+      
+      const container = document.getElementById('lb-gallery');
+      container.innerHTML = '';
+      
+            data.items.forEach((item, i) => {
+        const wrap = document.createElement('div');
+        
+                               if (item.type === 'video') {
+          const videoId = `vid-${index}-${i}`;
+          wrap.className = 'gallery-item video-item';
+          wrap.innerHTML = `
+            <div class="video-wrap">
+              <video id="${videoId}" src="${item.src}" muted loop playsinline autoplay data-speed="${0.4 + (i % 3) * 0.25}"></video>
+              <button class="video-mute" onclick="toggleVideoMute('${videoId}', this)" aria-label="Unmute">🔇</button>
+              <button class="video-play" onclick="toggleVideoPlay('${videoId}', this)" aria-label="Pause">⏸</button>
+            </div>
+            <p class="gallery-caption">${item.caption}</p>
+          `;
+                } else {
+          wrap.className = 'gallery-item photo-item';
+          wrap.innerHTML = `
+            <img src="${item.src}" alt="${item.caption}" data-speed="${0.4 + (i % 3) * 0.25}">
+            <p class="gallery-caption">${item.caption}</p>
+          `;
+        }
+        container.appendChild(wrap);
+      });
+      
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+                     // Force browser to paint initial state, then animate in with stagger
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.querySelectorAll('.gallery-item').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 220);
+          });
+        });
+      });
+      
+      setupVideoObserver();
+      requestAnimationFrame(parallaxLoop);
+    }
+
+        function closeGallery() {
+      if (videoObserver) {
+        videoObserver.disconnect();
+        videoObserver = null;
+      }
+      if (window.galleryItemObserver) {
+        window.galleryItemObserver.disconnect();
+        window.galleryItemObserver = null;
+      }
+      document.querySelectorAll('#lb-gallery video').forEach(v => v.pause());
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+        function toggleVideoMute(videoId, btn) {
+      const video = document.getElementById(videoId);
+      if (!video) return;
+      
+      if (video.muted) {
+        // Unmuting this one — mute all other videos first
+        document.querySelectorAll('#lb-gallery video').forEach(v => {
+          if (v.id !== videoId) {
+            v.muted = true;
+            const otherBtn = v.closest('.video-wrap')?.querySelector('.video-mute');
+            if (otherBtn) {
+              otherBtn.textContent = '🔇';
+              otherBtn.setAttribute('aria-label', 'Unmute');
+            }
+          }
+        });
+        video.muted = false;
+        btn.textContent = '🔊';
+        btn.setAttribute('aria-label', 'Mute');
+        video.play().catch(() => {});
+      } else {
+        video.muted = true;
+        btn.textContent = '🔇';
+        btn.setAttribute('aria-label', 'Unmute');
+      }
+    }
+
+    function toggleVideoPlay(videoId, btn) {
+      const video = document.getElementById(videoId);
+      if (!video) return;
+      
+      if (video.paused) {
+        delete video.dataset.userPaused;
+        video.play().catch(() => {});
+        btn.textContent = '⏸';
+        btn.setAttribute('aria-label', 'Pause');
+      } else {
+        video.dataset.userPaused = 'true';
+        video.pause();
+        btn.textContent = '▶';
+        btn.setAttribute('aria-label', 'Play');
+      }
+    }
+
+    // Pause videos when scrolled out of view
+        function setupVideoObserver() {
+      if (videoObserver) videoObserver.disconnect();
+      
+      videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            if (!video.dataset.userPaused) {
+              video.play().catch(() => {});
+            }
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      document.querySelectorAll('#lb-gallery video').forEach(v => {
+        videoObserver.observe(v);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeGallery();
+    });
+
+    function parallaxLoop() {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox.classList.contains('active')) return;
+      
+      const items = document.querySelectorAll('.gallery-item');
+      const lbRect = lightbox.getBoundingClientRect();
+      
+      items.forEach(item => {
+        const media = item.querySelector('img, video');
+        const rect = item.getBoundingClientRect();
+        const speed = parseFloat(media.dataset.speed) || 0.5;
+        
+        const centerOffset = (rect.top + rect.height / 2) - (lbRect.top + lbRect.height / 2);
+        const move = centerOffset * speed * 0.08;
+        
+        media.style.transform = `translateY(${move}px) scale(1.02)`;
+      });
+      
+      requestAnimationFrame(parallaxLoop);
+    }
+  </script>
+
+</body>
+</html>
