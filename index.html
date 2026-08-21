@@ -1,4 +1,4 @@
-X<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -59,35 +59,32 @@ X<!DOCTYPE html>
     }
     .nav-links a:hover { color: var(--text); }
 
-     .hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  background-image: url('images/_DSC5612copy.jpg');
-  background-size: cover;
-  background-position: center;
-  max-width: none;
-  margin: 0;
-  width: 100%;
-}
-   .hero::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.4));
-  z-index: 0;
-}
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 1; }
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background-image: url('images/_DSC5612copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
     }
-        .hero-content {
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.4));
+      z-index: 0;
+    }
+
+    .hero-content {
       position: relative;
       z-index: 1;
       text-align: center;
@@ -106,7 +103,7 @@ X<!DOCTYPE html>
     }
     .hero h1 span { color: var(--accent); display: block; }
 
-          .hero p {
+    .hero p {
       font-size: 1.1rem;
       color: var(--text);
       max-width: 500px;
@@ -269,7 +266,7 @@ X<!DOCTYPE html>
     .stat h4 { font-size: 2rem; color: var(--accent); font-weight: 700; }
     .stat p { font-size: 0.85rem; color: var(--muted); margin: 0; }
 
-        .contact-section {
+    .contact-section {
       text-align: center;
       background: rgba(20,20,20,0.7);
       backdrop-filter: blur(10px);
@@ -320,7 +317,6 @@ X<!DOCTYPE html>
       border-top: 1px solid var(--border);
     }
 
-    /* ===== LIGHTBOX ===== */
     .lightbox {
       display: none;
       position: fixed;
@@ -382,8 +378,7 @@ X<!DOCTYPE html>
       font-weight: 600;
     }
 
-               /* GALLERY ITEMS */
-       .gallery-item {
+    .gallery-item {
       margin-bottom: 5rem;
       position: relative;
       border-radius: 8px;
@@ -402,7 +397,6 @@ X<!DOCTYPE html>
       transition: transform 0.1s linear;
     }
 
-             /* Large desktop: Photos 3-column, Videos 2-column */
     @media (min-width: 1400px) {
       .lightbox-content {
         max-width: 100%;
@@ -417,7 +411,6 @@ X<!DOCTYPE html>
         margin: 0 auto;
       }
       
-      /* Photos: 3-column staggered */
       .gallery-item.photo-item {
         width: calc(33.333% - 1.5rem);
         margin-bottom: 3rem;
@@ -454,7 +447,6 @@ X<!DOCTYPE html>
         display: block;
       }
       
-      /* Videos: 2-column, heavily staggered, natural aspect ratio */
       .gallery-item.video-item {
         width: calc(50% - 1.5rem);
         margin-bottom: 4rem;
@@ -478,7 +470,7 @@ X<!DOCTYPE html>
         opacity: 1;
         transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
       }
-            .gallery-item.video-item video {
+      .gallery-item.video-item video {
         max-height: 75vh;
         width: auto;
         max-width: 100%;
@@ -487,7 +479,6 @@ X<!DOCTYPE html>
       }
     }
 
-    /* Medium desktop: everything 2-column */
     @media (min-width: 769px) and (max-width: 1399px) {
       .lightbox-content {
         max-width: 100%;
@@ -529,7 +520,7 @@ X<!DOCTYPE html>
         margin: 0 auto;
         display: block;
       }
-                    .gallery-item video {
+      .gallery-item video {
         max-height: 75vh;
         width: auto;
         max-width: 100%;
@@ -537,7 +528,7 @@ X<!DOCTYPE html>
         border-radius: 8px;
       }
     }
-    /* Mobile: single column, full image visible */
+
     @media (max-width: 768px) {
       .gallery-item {
         transform: translateY(40px);
@@ -554,7 +545,7 @@ X<!DOCTYPE html>
         object-fit: contain;
         margin: 0 auto;
       }
-            .gallery-item video {
+      .gallery-item video {
         max-height: 85vh;
         width: auto;
         max-width: 100%;
@@ -586,8 +577,7 @@ X<!DOCTYPE html>
       opacity: 0.85;
     }
 
-    /* ===== PER-VIDEO MUTE BUTTON ===== */
-       .video-wrap {
+    .video-wrap {
       position: relative;
       display: inline-flex;
       justify-content: center;
@@ -620,7 +610,7 @@ X<!DOCTYPE html>
       opacity: 1;
     }
 
-        .video-mute:hover {
+    .video-mute:hover {
       background: var(--accent);
       border-color: var(--accent);
       color: var(--bg);
@@ -658,7 +648,6 @@ X<!DOCTYPE html>
       transform: scale(1.1);
     }
 
-    /* Always show buttons on touch devices */
     @media (hover: none) {
       .video-mute { opacity: 1; }
       .video-play { opacity: 1; }
@@ -680,85 +669,80 @@ X<!DOCTYPE html>
       .video-mute { opacity: 1; width: 44px; height: 44px; font-size: 1rem; }
     }
 
+    #clients {
+      position: relative;
+      background-image: url('images/DSC01473-Enhanced-NR copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    #clients::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10,0.55);
+      z-index: 0;
+    }
+    #clients .section-header,
+    #clients .clients-grid {
+      position: relative;
+      z-index: 1;
+    }
+    #clients .client-card {
+      background: rgba(20,20,20,0.7);
+      backdrop-filter: blur(10px);
+      border-color: rgba(255,255,255,0.08);
+    }
 
+    #about {
+      position: relative;
+      background-image: url('images/DSC02456-Enhanced-NR copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10,0.55);
+      z-index: 0;
+    }
+    #about .about-content {
+      position: relative;
+      z-index: 1;
+    }
 
-/* ===== CLIENTS BACKGROUND ===== */
-#clients {
-  position: relative;
-  background-image: url('images/DSC01473-Enhanced-NR copy.jpg');
-  background-size: cover;
-  background-position: center;
-  max-width: none;
-  margin: 0;
-  width: 100%;
-}
-#clients::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(10,10,10,0.55);
-  z-index: 0;
-}
-#clients .section-header,
-#clients .clients-grid {
-  position: relative;
-  z-index: 1;
-}
-#clients .client-card {
-  background: rgba(20,20,20,0.7);
-  backdrop-filter: blur(10px);
-  border-color: rgba(255,255,255,0.08);
-}
-
-/* ===== ABOUT BACKGROUND ===== */
-#about {
-  position: relative;
-  background-image: url('images/DSC02456-Enhanced-NR copy.jpg');
-  background-size: cover;
-  background-position: center;
-  max-width: none;
-  margin: 0;
-  width: 100%;
-}
-#about::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(10,10,10,0.55);
-  z-index: 0;
-}
-#about .about-content {
-  position: relative;
-  z-index: 1;
-}
-
-/* ===== CONTACT BACKGROUND ===== */
-#contact {
-  position: relative;
-  background-image: url('images/_DSC39212-copy.jpg');
-  background-size: cover;
-  background-position: center;
-  max-width: none;
-  margin: 0;
-  width: 100%;
-}
-#contact::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(10,10,10,0.55);
-  z-index: 0;
-}
-#contact .contact-section {
-  position: relative;
-  z-index: 1;
-  background: rgba(20,20,20,0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
-}
+    #contact {
+      position: relative;
+      background-image: url('images/_DSC39212-copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10,0.55);
+      z-index: 0;
+    }
+    #contact .contact-section {
+      position: relative;
+      z-index: 1;
+      background: rgba(20,20,20,0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
   </style>
 </head>
 <body>
@@ -801,14 +785,15 @@ X<!DOCTYPE html>
       </div>
 
       <div class="portfolio-item" onclick="openGallery(1)">
-        <img src="images/_DSC7287copy.jpg" alt="Urban Street Series">
+        <img src="images/_DSC7287copy.jpg" alt="McLaren Artura Spider">
         <div class="portfolio-overlay">
           <h3>McLaren Artura Spider</h3>
           <p>Client Shoot - 2026</p>
         </div>
       </div>
- <div class="portfolio-item" onclick="openGallery(2)">
-        <img src="images/Screenshot 2026-08-20 at 1.00.46 AM.png" alt="Forged">
+
+      <div class="portfolio-item" onclick="openGallery(2)">
+        <img src="images/Screenshot 2026-08-20 at 1.00.46 PM.png" alt="Forged">
         <div class="portfolio-overlay">
           <h3>Forged</h3>
           <p>Brand Shoot - 2026</p>
@@ -891,7 +876,7 @@ X<!DOCTYPE html>
 
   <section id="about">
     <div class="about-content">
-            <div class="about-img">
+      <div class="about-img">
         <img src="images/your-photo.jpg" alt="About me">
       </div>
       <div class="about-text">
@@ -955,32 +940,31 @@ X<!DOCTYPE html>
           { type: "video", src: "images/Veyroncopy.mp4", caption: "Bugatti Veyron" },
           { type: "video", src: "images/Cole340.mp4", caption: "BMW M340i" },
           { type: "video", src: "images/sf90.mp4", caption: "Ferrari SF90" },
-	 { type: "video", src: "images/Porsche962copy1.mp4", caption: "Porsche 962C" },
-	 { type: "video", src: "images/917kcopy1.mp4", caption: "Porsche 917k" }
+          { type: "video", src: "images/Porsche962copy1.mp4", caption: "Porsche 962C" },
+          { type: "video", src: "images/917kcopy1.mp4", caption: "Porsche 917k" }
         ]
       },
       {
         title: "McLaren Artura Spider",
         subtitle: "Client Shoot - 2026",
-               items: [
-	 { type: "video", src: "images/McLarenArturaSpidercopy.mp4", caption: "Chasing horizons in the Artura" },
-    { type: "image", src: "images/_DSC7287copy.jpg", caption: "Perfect color" },      
- { type: "image", src: "images/_DSC7271copy.jpg", caption: "Borderline Ocean" },
+        items: [
+          { type: "video", src: "images/McLarenArturaSpidercopy.mp4", caption: "Chasing horizons in the Artura" },
+          { type: "image", src: "images/_DSC7287copy.jpg", caption: "Perfect color" },     
+          { type: "image", src: "images/_DSC7271copy.jpg", caption: "Borderline Ocean" },
           { type: "image", src: "images/_DSC7284copy.jpg", caption: "Double Open" },
           { type: "image", src: "images/_DSC7282copy.jpg", caption: "The wheel that controls the beast" },
           { type: "image", src: "images/_DSC7273copy.jpg", caption: "McLaren dead straight" },
-	   { type: "image", src: "images/_DSC7281copy.jpg", caption: "The lower the better" },
-	   { type: "image", src: "images/_DSC7286copy.jpg", caption: "Part of the perfect view" },
-	  { type: "image", src: "images/_DSC7295copy.jpg", caption: "The perfect silhouette" },
+          { type: "image", src: "images/_DSC7281copy.jpg", caption: "The lower the better" },
+          { type: "image", src: "images/_DSC7286copy.jpg", caption: "Part of the perfect view" },
+          { type: "image", src: "images/_DSC7295copy.jpg", caption: "The perfect silhouette" }
         ]
       },
- {
+      {
         title: "Forged",
         subtitle: "Brand Shoot - 2026",
         items: [
           { type: "video", src: "images/ForgedShootProject2copy.mp4", caption: "Forged Cars" },
-          { type: "video", src: "images/Forgedcopy.mp4", caption: "What is it?" },
-          
+          { type: "video", src: "images/Forgedcopy.mp4", caption: "What is it?" }
         ]
       },
       {
@@ -991,35 +975,33 @@ X<!DOCTYPE html>
           { type: "image", src: "images/_DSC4677-2copy.jpg", caption: "The perfect daily" },
           { type: "image", src: "images/_DSC4700copy.jpg", caption: "Warm lighting on a cool car" },
           { type: "image", src: "images/_DSC4756copy.jpg", caption: "Escaping the focus" },
-	  { type: "image", src: "images/_DSC4759copy.jpg", caption: "WRX in its element" },
-	  { type: "image", src: "images/_DSC4701copy.jpg", caption: "Looking past the valley" },
+          { type: "image", src: "images/_DSC4759copy.jpg", caption: "WRX in its element" },
+          { type: "image", src: "images/_DSC4701copy.jpg", caption: "Looking past the valley" }
         ]
       },
- 
       {
-        title: "Battle Battle Aero Kit Mk5 Supra",
+        title: "Battle Aero Kit Mk5 Supra",
         subtitle: "Client Shoot - 2025",
         items: [
           { type: "image", src: "images/_DSC3929copy.jpg", caption: "Menacing from afar" },
           { type: "image", src: "images/_DSC3970copy.jpg", caption: "The perfect curves" },
           { type: "image", src: "images/_DSC4093copy.jpg", caption: "Long exposure" },
-	   { type: "image", src: "images/_DSC7001copy.jpg", caption: "The perfect fitment" },
-	   { type: "image", src: "images/_DSC7000copy.jpg", caption: "Below sea level" }
+          { type: "image", src: "images/_DSC7001copy.jpg", caption: "The perfect fitment" },
+          { type: "image", src: "images/_DSC7000copy.jpg", caption: "Below sea level" }
         ]
       },
-
       {
         title: "IMSA - Laguna Seca",
-        subtitle: "Portrait — 2023",
+        subtitle: "Motorsports Media — 2025",
         items: [
           { type: "image", src: "images/_DSC5509copy.jpg", caption: "Porsche 963 Apple Livery" },
           { type: "image", src: "images/_DSC5605copy.jpg", caption: "Porsche GT3R" },
           { type: "image", src: "images/_DSC5612copy.jpg", caption: "Aston Martin Valkyrie" },
           { type: "image", src: "images/_DSC5787copy.jpg", caption: "Aston at Corkscrew" },
-{ type: "image", src: "images/_DSC6242copy.jpg", caption: "Pedal to the Floor" },
-{ type: "image", src: "images/_DSC6418copy.jpg", caption: "Shooting Flames" },
-{ type: "image", src: "images/_DSC6344copy.jpg", caption: "Looking down no the track" },
-{ type: "image", src: "images/_DSC6013copy.jpg", caption: "Racing to the line" }
+          { type: "image", src: "images/_DSC6242copy.jpg", caption: "Pedal to the Floor" },
+          { type: "image", src: "images/_DSC6418copy.jpg", caption: "Shooting Flames" },
+          { type: "image", src: "images/_DSC6344copy.jpg", caption: "Looking down on the track" },
+          { type: "image", src: "images/_DSC6013copy.jpg", caption: "Racing to the line" }
         ]
       },
       {
@@ -1028,18 +1010,18 @@ X<!DOCTYPE html>
         items: [
           { type: "image", src: "images/DSC01473-Enhanced-NR copy.jpg", caption: "Japanese Porsche Widebody" },
           { type: "image", src: "images/DSC02334-Enhanced-NR copy.jpg", caption: "Definition of Motion" },
-          { type: "image", src: "images/_DSC7287 copy.jpg", caption: "The Oceanic Color" },
-{ type: "image", src: "images/_DSC6950copy.jpg", caption: "Racing down 17 Mile" },
-{ type: "image", src: "images/_DSC6838copy.jpg", caption: "Guided by the Palm Trees" },
-{ type: "image", src: "images/_DSC6624copy.jpg", caption: "BMW in front of the Golden Gate" },
-{ type: "image", src: "images/_DSC3907_copy.jpg", caption: "Perfect Motion Blur" },
-{ type: "image", src: "images/_DSC3863.jpg", caption: "Seeing Double GTR" },
-{ type: "image", src: "images/_DSC3246-Enhanced-NR copy.jpg", caption: "Abandoned Looking GT4RS" }
+          { type: "image", src: "images/_DSC7287copy.jpg", caption: "The Oceanic Color" },
+          { type: "image", src: "images/_DSC6950copy.jpg", caption: "Racing down 17 Mile" },
+          { type: "image", src: "images/_DSC6838copy.jpg", caption: "Guided by the Palm Trees" },
+          { type: "image", src: "images/_DSC6624copy.jpg", caption: "BMW in front of the Golden Gate" },
+          { type: "image", src: "images/_DSC3907_copy.jpg", caption: "Perfect Motion Blur" },
+          { type: "image", src: "images/_DSC3863.jpg", caption: "Seeing Double GTR" },
+          { type: "image", src: "images/_DSC3246-Enhanced-NR copy.jpg", caption: "Abandoned Looking GT4RS" }
         ]
       }
     ];
 
-    let videoObserver;
+    let galleryObserver;
 
     function openGallery(index) {
       const data = galleries[index];
@@ -1049,151 +1031,78 @@ X<!DOCTYPE html>
       const container = document.getElementById('lb-gallery');
       container.innerHTML = '';
       
-            data.items.forEach((item, i) => {
+      if (galleryObserver) galleryObserver.disconnect();
+
+      galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            const video = entry.target.querySelector('video');
+            if (video) video.play().catch(() => {});
+          } else {
+            const video = entry.target.querySelector('video');
+            if (video) video.pause();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      data.items.forEach((item, i) => {
         const wrap = document.createElement('div');
-        
-                               if (item.type === 'video') {
-          const videoId = `vid-${index}-${i}`;
-          wrap.className = 'gallery-item video-item';
+        wrap.className = `gallery-item ${item.type === 'video' ? 'video-item' : 'photo-item'}`;
+
+        if (item.type === 'video') {
           wrap.innerHTML = `
             <div class="video-wrap">
-              <video id="${videoId}" src="${item.src}" muted loop playsinline autoplay data-speed="${0.4 + (i % 3) * 0.25}"></video>
-              <button class="video-mute" onclick="toggleVideoMute('${videoId}', this)" aria-label="Unmute">🔇</button>
-              <button class="video-play" onclick="toggleVideoPlay('${videoId}', this)" aria-label="Pause">⏸</button>
+              <video src="${item.src}" loop muted playsinline></video>
+              <button class="video-mute" onclick="toggleMute(this)" title="Toggle Sound">🔇</button>
+              <button class="video-play" onclick="togglePlay(this)" title="Play/Pause">⏸</button>
             </div>
             <p class="gallery-caption">${item.caption}</p>
           `;
-                } else {
-          wrap.className = 'gallery-item photo-item';
+        } else {
           wrap.innerHTML = `
-            <img src="${item.src}" alt="${item.caption}" data-speed="${0.4 + (i % 3) * 0.25}">
+            <img src="${item.src}" alt="${item.caption}">
             <p class="gallery-caption">${item.caption}</p>
           `;
         }
+
         container.appendChild(wrap);
+        galleryObserver.observe(wrap);
       });
-      
+
       document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
-      
-                     // Force browser to paint initial state, then animate in with stagger
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          document.querySelectorAll('.gallery-item').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 220);
-          });
-        });
-      });
-      
-      setupVideoObserver();
-      requestAnimationFrame(parallaxLoop);
     }
 
-        function closeGallery() {
-      if (videoObserver) {
-        videoObserver.disconnect();
-        videoObserver = null;
-      }
-      if (window.galleryItemObserver) {
-        window.galleryItemObserver.disconnect();
-        window.galleryItemObserver = null;
-      }
-      document.querySelectorAll('#lb-gallery video').forEach(v => v.pause());
+    function closeGallery() {
       document.getElementById('lightbox').classList.remove('active');
       document.body.style.overflow = '';
+      if (galleryObserver) galleryObserver.disconnect();
+      const container = document.getElementById('lb-gallery');
+      container.querySelectorAll('video').forEach(v => v.pause());
+      container.innerHTML = '';
     }
 
-        function toggleVideoMute(videoId, btn) {
-      const video = document.getElementById(videoId);
-      if (!video) return;
-      
-      if (video.muted) {
-        // Unmuting this one — mute all other videos first
-        document.querySelectorAll('#lb-gallery video').forEach(v => {
-          if (v.id !== videoId) {
-            v.muted = true;
-            const otherBtn = v.closest('.video-wrap')?.querySelector('.video-mute');
-            if (otherBtn) {
-              otherBtn.textContent = '🔇';
-              otherBtn.setAttribute('aria-label', 'Unmute');
-            }
-          }
-        });
-        video.muted = false;
-        btn.textContent = '🔊';
-        btn.setAttribute('aria-label', 'Mute');
-        video.play().catch(() => {});
-      } else {
-        video.muted = true;
-        btn.textContent = '🔇';
-        btn.setAttribute('aria-label', 'Unmute');
-      }
+    function toggleMute(btn) {
+      const video = btn.closest('.video-wrap').querySelector('video');
+      video.muted = !video.muted;
+      btn.textContent = video.muted ? '🔇' : '🔊';
     }
 
-    function toggleVideoPlay(videoId, btn) {
-      const video = document.getElementById(videoId);
-      if (!video) return;
-      
+    function togglePlay(btn) {
+      const video = btn.closest('.video-wrap').querySelector('video');
       if (video.paused) {
-        delete video.dataset.userPaused;
-        video.play().catch(() => {});
+        video.play();
         btn.textContent = '⏸';
-        btn.setAttribute('aria-label', 'Pause');
       } else {
-        video.dataset.userPaused = 'true';
         video.pause();
         btn.textContent = '▶';
-        btn.setAttribute('aria-label', 'Play');
       }
-    }
-
-    // Pause videos when scrolled out of view
-        function setupVideoObserver() {
-      if (videoObserver) videoObserver.disconnect();
-      
-      videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const video = entry.target;
-          if (entry.isIntersecting) {
-            if (!video.dataset.userPaused) {
-              video.play().catch(() => {});
-            }
-          } else {
-            video.pause();
-          }
-        });
-      }, { threshold: 0.3 });
-      
-      document.querySelectorAll('#lb-gallery video').forEach(v => {
-        videoObserver.observe(v);
-      });
     }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeGallery();
     });
-
-    function parallaxLoop() {
-      const lightbox = document.getElementById('lightbox');
-      if (!lightbox.classList.contains('active')) return;
-      
-      const items = document.querySelectorAll('.gallery-item');
-      const lbRect = lightbox.getBoundingClientRect();
-      
-      items.forEach(item => {
-        const media = item.querySelector('img, video');
-        const rect = item.getBoundingClientRect();
-        const speed = parseFloat(media.dataset.speed) || 0.5;
-        
-        const centerOffset = (rect.top + rect.height / 2) - (lbRect.top + lbRect.height / 2);
-        const move = centerOffset * speed * 0.08;
-        
-        media.style.transform = `translateY(${move}px) scale(1.02)`;
-      });
-      
-      requestAnimationFrame(parallaxLoop);
-    }
   </script>
-
 </body>
 </html>
