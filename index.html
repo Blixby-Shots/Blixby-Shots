@@ -1083,21 +1083,29 @@
       container.innerHTML = '';
     }
 
-      function toggleMute(btn) {
+         function toggleMute(btn) {
       const video = btn.closest('.video-wrap').querySelector('video');
       
       if (video.muted) {
-        // Unmuting this one — mute all other videos first
+        // Unmuting this one — pause and mute all other videos
         document.querySelectorAll('#lb-gallery video').forEach(v => {
           if (v !== video) {
+            v.pause();
             v.muted = true;
-            const otherBtn = v.closest('.video-wrap')?.querySelector('.video-mute');
-            if (otherBtn) otherBtn.textContent = '🔇';
+            const wrap = v.closest('.video-wrap');
+            const muteBtn = wrap?.querySelector('.video-mute');
+            const playBtn = wrap?.querySelector('.video-play');
+            if (muteBtn) muteBtn.textContent = '🔇';
+            if (playBtn) playBtn.textContent = '▶';
           }
         });
         video.muted = false;
         btn.textContent = '🔊';
         video.play().catch(() => {});
+        
+        // Update this video's play button to show pause icon
+        const playBtn = btn.closest('.video-wrap')?.querySelector('.video-play');
+        if (playBtn) playBtn.textContent = '⏸';
       } else {
         video.muted = true;
         btn.textContent = '🔇';
