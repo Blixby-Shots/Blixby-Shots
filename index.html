@@ -46,7 +46,17 @@
       font-weight: 700;
       letter-spacing: -0.5px;
     }
-    .logo span { color: var(--accent); }
+      .logo span { color: var(--accent); }
+    .logo-sub {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
 
     .nav-links {
       display: flex;
@@ -112,16 +122,6 @@
       margin: 0 auto 2rem auto;
       font-weight: 400;
       text-shadow: 0 2px 12px rgba(0,0,0,0.7);
-    }
-    .hero-subtitle {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      opacity: 0.9;
     }
 
     .btn {
@@ -766,7 +766,10 @@
 <body>
 
   <nav>
-    <div class="logo">blixby<span>.</span>shots</div>
+        <div class="logo">
+      blixby<span>.</span>shots
+      <span class="logo-sub">Loic Kerebel — Photography & Videography</span>
+    </div>
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#clients">Clients</a></li>
@@ -776,9 +779,8 @@
   </nav>
 
   <section class="hero">
-        <div class="hero-content">
+            <div class="hero-content">
       <h1>Capturing Motion <span>Defining Automotive Art</span></h1>
-      <p class="hero-subtitle">Loic Kerebel — Photography & Videography</p>
       <p>Motion, light, and detail — captured for the automotive world. Based in Los Gatos, serving the Bay Area.</p>
       <div class="hero-btns">
         <a href="#work" class="btn btn-accent">View Portfolio</a>
