@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Loic Kerebel | Blixby.Shots — Photography/Videography Portfolio</title>
+  <meta name="google-site-verification" content="Hnm6xy7c4byfwVcf1Ncq3SYG0i5sOTcY-Mai9wqAKNQ" />
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #f5f5f5;
+      --muted: #888;
+      --accent: #e8c547;
+      --border: #222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+      .logo span { color: var(--accent); }
+    .logo-sub {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background-image: url('images/_DSC5612copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.4));
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+    }
+    .hero h1 span { color: var(--accent); display: block; }
+
+        .hero p {
+      font-size: 1.1rem;
+      color: var(--text);
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+      font-weight: 400;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border: 1px solid var(--text);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--text); color: var(--bg); }
+
+    .btn-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .btn-accent:hover { background: transparent; color: var(--accent); }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header { margin-bottom: 4rem; }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    .section-header p { color: var(--muted); font-size: 1rem; }
+    .divider {
+      width: 60px; height: 2px;
+      background: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .portfolio-item {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--surface);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+    .portfolio-item:hover { transform: translateY(-5px); }
+
+    .portfolio-item img, .portfolio-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-item:hover img, .portfolio-item:hover video { transform: scale(1.05); }
+
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s;
+    }
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .portfolio-overlay h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .portfolio-overlay p { font-size: 0.85rem; color: var(--muted); }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .client-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .client-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .client-card .client-logo {
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, var(--accent), #d4a017);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--bg);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .client-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .client-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; white-space: pre-line; }
+    .client-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(232,197,71,0.1);
+      color: var(--accent);
+      font-size: 0.75rem;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-img {
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
+    .stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat h4 { font-size: 2rem; color: var(--accent); font-weight: 700; }
+    .stat p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+    .contact-section {
+      text-align: center;
+      background: rgba(20,20,20,0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 4rem 2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-section p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .social-links a {
+      width: 50px; height: 50px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(5,5,5,0.98);
+      z-index: 1000;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .lightbox.active { display: block; }
+
+    .lightbox-close {
+      position: fixed;
+      top: 2rem; right: 2rem;
+      width: 50px; height: 50px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .lightbox-close:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .lightbox-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .lightbox-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .lightbox-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: -1.5px;
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+    .lightbox-header p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .gallery-item {
+      margin-bottom: 5rem;
+      position: relative;
+      border-radius: 8px;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+      text-align: center;
+    }
+
+    .gallery-item img, .gallery-item video {
+      display: block;
+      border-radius: 8px;
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    @media (min-width: 1400px) {
+      .lightbox-content {
+        max-width: 100%;
+        padding: 6rem 3vw 4rem;
+      }
+      #lb-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1800px;
+        margin: 0 auto;
+      }
+      
+      .gallery-item.photo-item {
+        width: calc(33.333% - 1.5rem);
+        margin-bottom: 3rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: translateX(-120px) rotate(-5deg);
+        transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gallery-item.photo-item:nth-child(3n+1) {
+        margin-top: 0;
+        transform: translateX(-120px) rotate(-5deg);
+      }
+      .gallery-item.photo-item:nth-child(3n+2) {
+        margin-top: 10rem;
+        transform: translateX(120px) rotate(5deg);
+      }
+      .gallery-item.photo-item:nth-child(3n+3) {
+        margin-top: 20rem;
+        transform: translateY(100px) scale(0.88) rotate(3deg);
+      }
+      .gallery-item.photo-item:nth-child(3n+4) { margin-top: 5rem; }
+      .gallery-item.photo-item:nth-child(3n+5) { margin-top: 15rem; }
+      .gallery-item.photo-item:nth-child(3n+6) { margin-top: 25rem; }
+      .gallery-item.photo-item.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+      }
+      .gallery-item.photo-item img {
+        max-height: 55vh;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+      }
+      
+      .gallery-item.video-item {
+        width: calc(50% - 1.5rem);
+        margin-bottom: 4rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: translateX(-100px) rotate(-4deg);
+        transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gallery-item.video-item:nth-child(odd) {
+        margin-top: 0;
+        transform: translateX(-100px) rotate(-4deg);
+      }
+      .gallery-item.video-item:nth-child(even) {
+        margin-top: 14rem;
+        transform: translateX(100px) rotate(4deg);
+      }
+      .gallery-item.video-item:nth-child(3n) {
+        transform: translateY(80px) scale(0.92) rotate(-2deg);
+      }
+      .gallery-item.video-item.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+      }
+      .gallery-item.video-item video {
+        max-height: 75vh;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 8px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1399px) {
+      .lightbox-content {
+        max-width: 100%;
+        padding: 6rem 4vw 4rem;
+      }
+      #lb-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        width: calc(50% - 1.5rem);
+        margin-bottom: 4rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: translateX(-100px) rotate(-4deg);
+        transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gallery-item:nth-child(even) {
+        margin-top: 12rem;
+        transform: translateX(100px) rotate(4deg);
+      }
+      .gallery-item:nth-child(3n) {
+        transform: translateY(80px) scale(0.92) rotate(-2deg);
+      }
+      .gallery-item.visible {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+      }
+      .gallery-item img {
+        max-height: 58vh;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+      }
+      .gallery-item video {
+        max-height: 75vh;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 8px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item {
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .gallery-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .gallery-item img {
+        max-height: 85vh;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+      .gallery-item video {
+        max-height: 85vh;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 8px;
+      }
+      .gallery-item:nth-child(even) {
+        margin-left: 8%;
+        margin-right: -4%;
+      }
+      .gallery-item:nth-child(odd) {
+        margin-left: -4%;
+        margin-right: 8%;
+      }
+      .gallery-item:nth-child(3n) {
+        margin-left: 2%;
+        margin-right: 2%;
+      }
+    }
+
+    .gallery-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-top: 1.5rem;
+      text-align: center;
+      letter-spacing: 0.5px;
+      opacity: 0.85;
+    }
+
+    .video-wrap {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-mute {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      opacity: 0;
+    }
+
+    .gallery-item:hover .video-mute,
+    .video-mute:focus {
+      opacity: 1;
+    }
+
+    .video-mute:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      transform: scale(1.1);
+    }
+
+    .video-play {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      opacity: 0;
+    }
+    .gallery-item:hover .video-play,
+    .video-play:focus {
+      opacity: 1;
+    }
+    .video-play:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+      transform: scale(1.1);
+    }
+
+    @media (hover: none) {
+      .video-mute { opacity: 1; }
+      .video-play { opacity: 1; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .about-content { grid-template-columns: 1fr; gap: 2rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+            .stats { gap: 1rem; }
+
+      .portfolio-overlay {
+        transform: translateY(0);
+        opacity: 1;
+        padding: 1.5rem 1rem 1rem;
+      }
+      .gallery-item:nth-child(even),
+      .gallery-item:nth-child(odd),
+      .gallery-item:nth-child(3n) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .lightbox-header h2 { font-size: 2.2rem; }
+      .video-mute { opacity: 1; width: 44px; height: 44px; font-size: 1rem; }
+    }
+
+    #clients {
+      position: relative;
+      background-image: url('images/DSC01473-Enhanced-NR copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    #clients::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10,0.55);
+      z-index: 0;
+    }
+    #clients .section-header,
+    #clients .clients-grid {
+      position: relative;
+      z-index: 1;
+    }
+    #clients .client-card {
+      background: rgba(20,20,20,0.7);
+      backdrop-filter: blur(10px);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    #about {
+      position: relative;
+      background-image: url('images/DSC02456-Enhanced-NR copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10,0.55);
+      z-index: 0;
+    }
+    #about .about-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    #contact {
+      position: relative;
+      background-image: url('images/_DSC39212-copy.jpg');
+      background-size: cover;
+      background-position: center;
+      max-width: none;
+      margin: 0;
+      width: 100%;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10,0.55);
+      z-index: 0;
+    }
+    #contact .contact-section {
+      position: relative;
+      z-index: 1;
+      background: rgba(20,20,20,0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+        <div class="logo">
+      blixby<span>.</span>shots
+      <span class="logo-sub">Loic Kerebel — Photography & Videography</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+            <div class="hero-content">
+      <h1>Capturing Motion <span>Defining Automotive Art</span></h1>
+      <p>Photography & videography built from character, not presets. 
+        Based in Los Gatos, serving the Bay Area.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-accent">View Portfolio</a>
+        <a href="#contact" class="btn">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-header">
+      <h2>Past Work</h2>
+      <div class="divider"></div>
+      <p>Click any project to open the gallery.</p>
+    </div>
+    <div class="portfolio-grid">
+      
+      <div class="portfolio-item" onclick="openGallery(0)">
+        <img src="images/_DSC6997copy.jpg" alt="Videography">
+        <div class="portfolio-overlay">
+          <h3>Videography</h3>
+          <p>Favorite Personal Projects - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(1)">
+        <img src="images/_DSC7287copy.jpg" alt="McLaren Artura Spider">
+        <div class="portfolio-overlay">
+          <h3>McLaren Artura Spider</h3>
+          <p>Client Shoot - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(2)">
+        <img src="images/Forged.jpg" alt="Forged">
+        <div class="portfolio-overlay">
+          <h3>Forged</h3>
+          <p>Brand Shoot - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(3)">
+        <img src="images/_DSC4649copy.jpg" alt="Subaru WRX">
+        <div class="portfolio-overlay">
+          <h3>Subaru WRX</h3>
+          <p>Client Shoot - 2026</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(4)">
+        <img src="images/_DSC3929copy.jpg" alt="Battle Aero Kit Mk5 Supra">
+        <div class="portfolio-overlay">
+          <h3>Battle Aero Kit Mk5 Supra</h3>
+          <p>Client Shoot - 2025</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(5)">
+        <img src="images/_DSC6281copy.jpg" alt="IMSA - Laguna Seca">
+        <div class="portfolio-overlay">
+          <h3>IMSA - Laguna Seca</h3>
+          <p>Motorsports Media</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item" onclick="openGallery(6)">
+        <img src="images/DSC01460-Enhanced-NR copy.jpg" alt="My Favorite Photos">
+        <div class="portfolio-overlay">
+          <h3>My Favorite Photos</h3>
+          <p>2025 - 2026</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="section-header">
+      <h2>Past Clients</h2>
+      <div class="divider"></div>
+      <p>Brands and creators I've had the pleasure of working with.</p>
+    </div>
+    <div class="clients-grid">
+
+      <div class="client-card">
+        <div class="client-logo">R</div>
+        <h3>Riley A</h3>
+        <p>Great photographer to work with, saw the vision, and executed. Delivered the results in a timely manner. Overall, amazing photos, and a great person to work with.</p>
+        <span class="client-tag">Subaru WRX</span>
+      </div>
+
+      <div class="client-card">
+        <div class="client-logo">C</div>
+        <h3>Charlotte - Forged</h3>
+        <p>We first met Loic at Santana Row during an OCT100 event, where his enthusiasm for cars and automotive content immediately stood out.<br>
+Since then, we've had the pleasure of working with Loic on a number of video reels and have been consistently impressed with both his creativity and professionalism.<br>
+Loic has a fantastic eye for automotive content and really understands how to capture the details, craftsmanship and character of a car.<br>
+He has a natural ability to understand the vision behind a project and turn it into engaging, beautifully shot and edited content.<br>
+He's enthusiastic, professional and incredibly easy to work with, while also bringing his own creative ideas to every shoot. <br>
+We've been extremely pleased with everything he's produced for us and wouldn't hesitate to continue working with him.<br>
+We would happily recommend Loic to anyone looking for creative, high-quality automotive photography and video content.</p>
+        <span class="client-tag">Forged Brand Shoot</span>
+      </div>
+
+      <div class="client-card">
+        <div class="client-logo">M</div>
+        <h3>Maxime V</h3>
+        <p>I met Loïc at a car show where he was volunteering. We chatted about cars and photography, and when we realized that we were both going to be in Monterey the weekend after, we decided to meet there so that he could take photos and videos of my McLaren. He was very thoughtful about the details of how the car should be, efficient while shooting, and very quick in showing me the results of his post-edit work. And I absolutely love how the car looks on the final pics and video. He was able to make the incredible Belize Blue really stand out in particular.</p>
+        <span class="client-tag">McLaren Artura</span>
+      </div>
+
+      <div class="client-card">
+        <div class="client-logo">C</div>
+        <h3>Cole H</h3>
+        <p>Loic did an amazing job shooting my BMW M340i. He knew exactly how to capture the car from the right angles and really brought out all the details that make it stand out. The photos came out super clean and professional, and he was easy to work with throughout the whole shoot. You can tell he genuinely cares about cars and puts a lot of effort into his work. I’d definitely recommend him to anyone looking for high-quality automotive photography and/or videography.</p>
+        <span class="client-tag">BMW M340i</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-content">
+      <div class="about-img">
+        <img src="images/IMG_3154.jpg" alt="About me">
+      </div>
+      <div class="about-text">
+        <h3>Behind the Lens</h3>
+        <p>Hi, my name is Loic Kerebel. I am an automotive photographer and filmmaker based in Los Gatos, shooting across the Bay Area. What started as chasing cars with a camera turned into a full-time obsession with light, motion, and the details that make every build unique.</p>
+        <p>Whether it's a track-day Porsche, a widebody Supra at golden hour, or a brand shoot that needs to feel cinematic, I treat every car like it deserves its own cover story. Five years in, I've worked with private owners, brands, and motorsport teams — and I'm just getting started.</p>
+        <div class="stats">
+          <div class="stat">
+            <h4>50+</h4>
+            <p>Projects</p>
+          </div>
+          <div class="stat">
+            <h4>10+</h4>
+            <p>Clients</p>
+          </div>
+          <div class="stat">
+            <h4>5</h4>
+            <p>Years</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-section">
+      <h2>Let's Create Together</h2>
+      <p>Available for bookings, collaborations, and creative projects. Drop me a message and let's make something beautiful.</p>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=loic@kerebel.com" target="_blank" class="btn btn-accent">loic@kerebel.com</a>
+      <p style="margin-top: 1rem; color: #888;">📞 <a href="tel:+12247154330" style="color: #f5f5f5; text-decoration: none;">(224) 715-4330</a></p>
+            <div class="social-links">
+        <a href="https://instagram.com/blixby.shots" target="_blank" title="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="https://tiktok.com/@blixby.cars" target="_blank" title="TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+          </svg>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=loic@kerebel.com" target="_blank" title="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 blixby.shots — All rights reserved. Designed with light and shadow.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeGallery()">✕</button>
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <h2 id="lb-title">Project Title</h2>
+        <p id="lb-subtitle">Category — Year</p>
+      </div>
+      <div id="lb-gallery"></div>
+    </div>
+  </div>
+
+  <script>
+    const galleries = [
+      {
+        title: "Videography",
+        subtitle: "Favorite Personal Projects - 2026",
+        items: [
+          
+          { type: "video", src: "images/904 + Carrera.mp4", caption: "Porsche 904 GTS + Carrera RS" },
+          { type: "video", src: "images/sf90xx.mp4", caption: "Ferrari SF90xx" },
+          { type: "video", src: "images/Cole340.mp4", caption: "BMW M340i" },
+         { type: "video", src: "images/428i road trip.mp4", caption: "BMW all over the coast" }, 
+          { type: "video", src: "images/3rscopy.mp4", caption: "Porsche 992 GT3RS" },
+         
+          { type: "video", src: "images/sf90.mp4", caption: "Ferrari SF90" },
+            
+          { type: "video", src: "images/VeyronCopy.mp4", caption: "Bugatti Veyron" },   
+        ]
+      },
+      {
+        title: "McLaren Artura Spider",
+        subtitle: "Client Shoot - 2026",
+        items: [
+          { type: "video", src: "images/McLarenArturaSpidercopy.mp4", caption: "Chasing horizons in the Artura" },
+          { type: "image", src: "images/_DSC7287copy.jpg", caption: "Perfect color" },     
+          { type: "image", src: "images/_DSC7271copy.jpg", caption: "Borderline Ocean" },
+          { type: "image", src: "images/_DSC7284copy.jpg", caption: "Double Open" },
+          { type: "image", src: "images/_DSC7282copy.jpg", caption: "The wheel that controls the beast" },
+          { type: "image", src: "images/_DSC7273copy.jpg", caption: "McLaren dead straight" },
+          { type: "image", src: "images/_DSC7281copy.jpg", caption: "The lower the better" },
+          { type: "image", src: "images/_DSC7286copy.jpg", caption: "Part of the perfect view" },
+          { type: "image", src: "images/_DSC7295copy.jpg", caption: "The perfect silhouette" }
+        ]
+      },
+      {
+        title: "Forged",
+        subtitle: "Brand Shoot - 2026",
+        items: [
+          { type: "video", src: "images/ForgedShootProject2copy.mp4", caption: "Forged Cars" },
+          { type: "video", src: "images/Forgedcopy.mp4", caption: "What is it?" }
+        ]
+      },
+      {
+        title: "Subaru WRX",
+        subtitle: "Client Shoot - 2026",
+        items: [
+          { type: "image", src: "images/_DSC4649copy.jpg", caption: "Top of the endless valley" },
+          { type: "image", src: "images/_DSC4677-2copy.jpg", caption: "The perfect daily" },
+          { type: "image", src: "images/_DSC4700copy.jpg", caption: "Warm lighting on a cool car" },
+          { type: "image", src: "images/_DSC4756copy.jpg", caption: "Escaping the focus" },
+          { type: "image", src: "images/_DSC4759copy.jpg", caption: "WRX in its element" },
+          { type: "image", src: "images/_DSC4701copy.jpg", caption: "Looking past the valley" }
+        ]
+      },
+      {
+        title: "Battle Aero Kit Mk5 Supra",
+        subtitle: "Client Shoot - 2025",
+        items: [
+          { type: "image", src: "images/_DSC3929copy.jpg", caption: "Menacing from afar" },
+          { type: "image", src: "images/_DSC3970copy.jpg", caption: "The perfect curves" },
+          { type: "image", src: "images/_DSC4093copy.jpg", caption: "Long exposure" },
+          { type: "image", src: "images/_DSC7001copy.jpg", caption: "The perfect fitment" },
+          { type: "image", src: "images/_DSC7000copy.jpg", caption: "Below sea level" }
+        ]
+      },
+      {
+        title: "IMSA - Laguna Seca",
+        subtitle: "Motorsports Media — 2025",
+        items: [
+          { type: "image", src: "images/_DSC5509copy.jpg", caption: "Porsche 963 Apple Livery" },
+          { type: "image", src: "images/_DSC5605copy.jpg", caption: "Porsche GT3R" },
+          { type: "image", src: "images/_DSC5612copy.jpg", caption: "Aston Martin Valkyrie" },
+          { type: "image", src: "images/_DSC5787copy.jpg", caption: "Aston at Corkscrew" },
+          { type: "image", src: "images/_DSC6242copy.jpg", caption: "Pedal to the Floor" },
+          { type: "image", src: "images/_DSC6418copy.jpg", caption: "Shooting Flames" },
+          { type: "image", src: "images/_DSC6344copy.jpg", caption: "Looking down on the track" },
+          { type: "image", src: "images/_DSC6013copy.jpg", caption: "Racing to the line" }
+        ]
+      },
+      {
+        title: "My Favorite Photos",
+        subtitle: "2025 - 2026",
+        items: [
+          { type: "image", src: "images/DSC01473-Enhanced-NR copy.jpg", caption: "Japanese Porsche Widebody" },
+          { type: "image", src: "images/DSC02334-Enhanced-NR copy.jpg", caption: "Definition of Motion" },
+          { type: "image", src: "images/_DSC7287copy.jpg", caption: "The Oceanic Color" },
+          { type: "image", src: "images/_DSC6950copy.jpg", caption: "Racing down 17 Mile" },
+          { type: "image", src: "images/_DSC6838copy.jpg", caption: "Guided by the Palm Trees" },
+          { type: "image", src: "images/_DSC6624copy.jpg", caption: "BMW in front of the Golden Gate" },
+          { type: "image", src: "images/_DSC3907_copy.jpg", caption: "Perfect Motion Blur" },
+          { type: "image", src: "images/_DSC3863.jpg", caption: "Seeing Double GTR" },
+          { type: "image", src: "images/_DSC3246-Enhanced-NR copy.jpg", caption: "Abandoned Looking GT4RS" }
+        ]
+      }
+    ];
+
+    let galleryObserver;
+
+    function openGallery(index) {
+      const data = galleries[index];
+      document.getElementById('lb-title').textContent = data.title;
+      document.getElementById('lb-subtitle').textContent = data.subtitle;
+      
+      const container = document.getElementById('lb-gallery');
+      container.innerHTML = '';
+      
+      if (galleryObserver) galleryObserver.disconnect();
+
+      galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            const video = entry.target.querySelector('video');
+            if (video) video.play().catch(() => {});
+          } else {
+            const video = entry.target.querySelector('video');
+            if (video) video.pause();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      data.items.forEach((item, i) => {
+        const wrap = document.createElement('div');
+        wrap.className = `gallery-item ${item.type === 'video' ? 'video-item' : 'photo-item'}`;
+
+        if (item.type === 'video') {
+          wrap.innerHTML = `
+            <div class="video-wrap">
+              <video src="${item.src}" loop muted playsinline></video>
+              <button class="video-mute" onclick="toggleMute(this)" title="Toggle Sound">🔇</button>
+              <button class="video-play" onclick="togglePlay(this)" title="Play/Pause">⏸</button>
+            </div>
+            <p class="gallery-caption">${item.caption}</p>
+          `;
+        } else {
+          wrap.innerHTML = `
+            <img src="${item.src}" alt="${item.caption}">
+            <p class="gallery-caption">${item.caption}</p>
+          `;
+        }
+
+        container.appendChild(wrap);
+        galleryObserver.observe(wrap);
+      });
+
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+      if (galleryObserver) galleryObserver.disconnect();
+      const container = document.getElementById('lb-gallery');
+      container.querySelectorAll('video').forEach(v => v.pause());
+      container.innerHTML = '';
+    }
+
+         function toggleMute(btn) {
+      const video = btn.closest('.video-wrap').querySelector('video');
+      
+      if (video.muted) {
+        // Unmuting this one — pause and mute all other videos
+        document.querySelectorAll('#lb-gallery video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            v.muted = true;
+            const wrap = v.closest('.video-wrap');
+            const muteBtn = wrap?.querySelector('.video-mute');
+            const playBtn = wrap?.querySelector('.video-play');
+            if (muteBtn) muteBtn.textContent = '🔇';
+            if (playBtn) playBtn.textContent = '▶';
+          }
+        });
+        video.muted = false;
+        btn.textContent = '🔊';
+        video.play().catch(() => {});
+        
+        // Update this video's play button to show pause icon
+        const playBtn = btn.closest('.video-wrap')?.querySelector('.video-play');
+        if (playBtn) playBtn.textContent = '⏸';
+      } else {
+        video.muted = true;
+        btn.textContent = '🔇';
+      }
+    }
+
+    function togglePlay(btn) {
+      const video = btn.closest('.video-wrap').querySelector('video');
+      if (video.paused) {
+        video.play();
+        btn.textContent = '⏸';
+      } else {
+        video.pause();
+        btn.textContent = '▶';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeGallery();
+    });
+  </script>
+</body>
+</html>
